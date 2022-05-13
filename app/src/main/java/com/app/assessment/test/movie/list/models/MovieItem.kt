@@ -1,7 +1,10 @@
 package com.app.assessment.test.movie.list.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity
 data class MovieItem(
 
 	@field:SerializedName("overview")
@@ -37,6 +40,7 @@ data class MovieItem(
 	@field:SerializedName("vote_average")
 	val voteAverage: Double? = null,
 
+	@PrimaryKey
 	@field:SerializedName("id")
 	val id: Int? = null,
 

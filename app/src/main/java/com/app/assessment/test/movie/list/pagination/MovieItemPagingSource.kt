@@ -6,6 +6,8 @@ import com.app.assessment.test.BuildConfig
 import com.app.assessment.test.RetrofitBuilder
 import com.app.assessment.test.movie.list.models.MovieItem
 import com.app.assessment.test.movie.list.models.MoviesResponse
+import retrofit2.HttpException
+import java.io.IOException
 
 class MovieItemPagingSource: PagingSource<Int, MovieItem>() {
     override fun getRefreshKey(state: PagingState<Int, MovieItem>): Int? {
@@ -33,8 +35,12 @@ class MovieItemPagingSource: PagingSource<Int, MovieItem>() {
                 prevKey = if (page == 1) null else page,
                 nextKey = nextKey
             )
-        } catch (exception: Exception) {
-            return LoadResult.Error(exception)
+        } catch (e: IOException) {
+            // IOException for network failures.
+            return LoadResult.Error(e)
+        } catch (e: HttpException) {
+            // HttpException for any non-2xx HTTP status codes.
+            return LoadResult.Error(e)
         }
     }
 }
