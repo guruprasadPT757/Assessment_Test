@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/dimen10dp">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeToRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMoviesList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tool:listitem="@layout/item_movie_list"
+            tool:itemCount="5"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

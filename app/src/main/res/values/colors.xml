@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="scooter">#30C0C8</color>
+    <color name="eden">#134D50</color>
+    <color name="flush_mahogany">#C83830</color>
 </resources>
