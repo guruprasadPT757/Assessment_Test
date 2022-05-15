@@ -1,4 +1,4 @@
-package com.app.assessment.test.movie.list
+package com.app.assessment.test.movie.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,16 +10,22 @@ import com.app.assessment.test.databinding.ItemMovieListBinding
 import com.app.assessment.test.movie.list.models.MovieItem
 import com.bumptech.glide.Glide
 
-class MovieListAdapter(movieComparator: MovieComparator): PagingDataAdapter<MovieItem, MovieListAdapter.MovieViewHolder>(movieComparator) {
+class MovieListAdapter: PagingDataAdapter<MovieItem, MovieListAdapter.MovieViewHolder>(
+    MovieComparator
+) {
+
+    var onItemClickListener: OnItemClickListener? = null
 
     inner class MovieViewHolder(var itemMovieListBinding: ItemMovieListBinding):
         RecyclerView.ViewHolder(itemMovieListBinding.root) {
 
+
         fun bindData(item: MovieItem) {
             itemMovieListBinding.movieItem = item
-            Glide.with(itemMovieListBinding.ivMoviePoster.context)
-                .load(BuildConfig.IMAGE_URL + item.posterPath)
-                .into(itemMovieListBinding.ivMoviePoster)
+            itemMovieListBinding.onItemClick = onItemClickListener
+//            Glide.with(itemMovieListBinding.ivMoviePoster.context)
+//                .load(BuildConfig.IMAGE_URL + item.posterPath)
+//                .into(itemMovieListBinding.ivMoviePoster)
         }
     }
 

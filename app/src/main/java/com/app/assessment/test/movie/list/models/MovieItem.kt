@@ -1,9 +1,18 @@
 package com.app.assessment.test.movie.list.models
 
+
+import android.os.Parcelable
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.app.assessment.test.BuildConfig
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity
 data class MovieItem(
 
@@ -21,9 +30,6 @@ data class MovieItem(
 
 	@field:SerializedName("title")
 	val title: String? = null,
-
-	@field:SerializedName("genre_ids")
-	val genreIds: List<Int?>? = null,
 
 	@field:SerializedName("poster_path")
 	val posterPath: String? = null,
@@ -48,5 +54,18 @@ data class MovieItem(
 	val adult: Boolean? = null,
 
 	@field:SerializedName("vote_count")
-	val voteCount: Int? = null
-)
+	val voteCount: Int? = null,
+
+	val timeStamp: Long? = null
+) : Parcelable {
+	companion object {
+		@JvmStatic
+		@BindingAdapter("app:imageUrl")
+		fun loadImage(view: ImageView, posterPath: String?) {
+			Glide.with(view.context)
+				.load(BuildConfig.IMAGE_URL + posterPath)
+				.apply(RequestOptions().fitCenter())
+				.into(view)
+		}
+	}
+}

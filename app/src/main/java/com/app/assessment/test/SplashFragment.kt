@@ -9,14 +9,12 @@ import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.app.assessment.test.databinding.FragmentSplashScreenBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class SplashFragment: Fragment() {
 
     private lateinit var screenBinding: FragmentSplashScreenBinding
+    private var job: Job? = Job()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,10 +35,10 @@ class SplashFragment: Fragment() {
             }
 
             override fun onAnimationEnd(p0: Animation?) {
-                CoroutineScope(Dispatchers.Main).launch {
+                job?.cancel()
+                job = CoroutineScope(Dispatchers.Main).launch {
                     delay(2000)
                     findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
-
                 }
             }
 
@@ -48,5 +46,10 @@ class SplashFragment: Fragment() {
 
             }
         })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        job?.cancel()
     }
 }

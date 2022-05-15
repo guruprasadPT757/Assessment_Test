@@ -1,4 +1,4 @@
-package com.app.assessment.test.movie.list.pagination
+package com.app.assessment.test.movie.list.paginationv3
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -9,7 +9,7 @@ import com.app.assessment.test.movie.list.models.MoviesResponse
 import retrofit2.HttpException
 import java.io.IOException
 
-class MovieItemPagingSource: PagingSource<Int, MovieItem>() {
+open class MovieItemPagingSource: PagingSource<Int, MovieItem>() {
     override fun getRefreshKey(state: PagingState<Int, MovieItem>): Int? {
 
         return state.anchorPosition?.let { anchorPosition ->
@@ -20,11 +20,9 @@ class MovieItemPagingSource: PagingSource<Int, MovieItem>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieItem> {
         val page = params.key ?: 1
-
         try {
             val movieResponse: MoviesResponse =
                 RetrofitBuilder.moviesApiService.getMovies(BuildConfig.API_KEY, page)
-
             val nextKey = if (movieResponse.results?.isNotEmpty() == true) {
                 null
             } else {

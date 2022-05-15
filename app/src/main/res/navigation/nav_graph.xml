@@ -15,5 +15,20 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.app.assessment.test.movie.list.MovieListFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+        <argument
+            android:name="movieItem"
+            app:argType="com.app.assessment.test.movie.list.models.MovieItem" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.app.assessment.test.movie.detail.MovieDetailFragment"
+        android:label="MovieDetailFragment" >
+        <argument
+            android:name="movieItem"
+            app:argType="com.app.assessment.test.movie.list.models.MovieItem" />
+    </fragment>
 </navigation>

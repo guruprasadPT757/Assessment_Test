@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.app.assessment.test.databinding.FragmentMovieDetailBinding
+import com.app.assessment.test.movie.list.models.MovieItem
 
 class MovieDetailFragment: Fragment() {
 
@@ -22,5 +23,11 @@ class MovieDetailFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val movieItem = arguments?.getParcelable<MovieItem>("movie_item")
+        movieDetailBinding.movieItem = movieItem
+
+        movieDetailBinding.btnWatchTrailer.setOnClickListener {
+
+        }
     }
 }

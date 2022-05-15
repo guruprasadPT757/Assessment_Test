@@ -4,26 +4,30 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.app.assessment.test.movie.list.models.MovieItem
+import com.app.assessment.test.movie.list.models.RemoteKeys
 
 
-@Database(entities = [MovieItem::class], version = 1, exportSchema = false)
+@Database(entities = [MovieItem::class, RemoteKeys::class], version = 1, exportSchema = false)
 abstract class MovieDataBase: RoomDatabase()  {
-    companion object  {
-        const val DATABASE_NAME = "MovieDataBase.db"
-        var INSTANCE: MovieDataBase? = null
-    }
+    abstract fun movieItemDao():MovieDao
+    abstract fun remoteKeyDao(): RemoteKeysDao
 
-    open fun getInstance(context: Context): MovieDataBase? {
-        if (INSTANCE == null) {
-            synchronized(MovieDataBase::class.java) {
-                if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context, MovieDataBase::class.java, DATABASE_NAME)
-                        .fallbackToDestructiveMigration()
-                        .build()
+    companion object  {
+        private const val DATABASE_NAME = "MovieDataBase.db"
+        var INSTANCE: MovieDataBase? = null
+        fun getInstance(context: Context): MovieDataBase? {
+            if (INSTANCE == null) {
+                synchronized(MovieDataBase::class.java) {
+                    if (INSTANCE == null) {
+                        INSTANCE = Room.databaseBuilder(context, MovieDataBase::class.java, DATABASE_NAME)
+                            .fallbackToDestructiveMigration()
+                            .build()
+                    }
                 }
             }
+            return INSTANCE
         }
-        return INSTANCE
     }
 }
