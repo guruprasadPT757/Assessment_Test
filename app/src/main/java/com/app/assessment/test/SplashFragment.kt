@@ -11,6 +11,9 @@ import androidx.navigation.fragment.findNavController
 import com.app.assessment.test.databinding.FragmentSplashScreenBinding
 import kotlinx.coroutines.*
 
+/**
+ * This class is used to display splash screen for 4 seconds with logo animation.
+ */
 class SplashFragment: Fragment() {
 
     private lateinit var screenBinding: FragmentSplashScreenBinding

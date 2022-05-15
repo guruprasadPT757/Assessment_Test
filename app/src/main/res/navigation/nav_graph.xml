@@ -10,8 +10,11 @@
         android:label="SplashFragment" >
         <action
             android:id="@+id/action_splashFragment_to_homeFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/splashFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.app.assessment.test.movie.list.MovieListFragment"
@@ -20,8 +23,13 @@
             android:id="@+id/action_homeFragment_to_movieDetailFragment"
             app:destination="@id/movieDetailFragment" />
         <argument
+            android:name="uri"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+        <argument
             android:name="movieItem"
-            app:argType="com.app.assessment.test.movie.list.models.MovieItem" />
+            app:argType="com.app.assessment.test.models.movie.MovieItem" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
@@ -29,6 +37,6 @@
         android:label="MovieDetailFragment" >
         <argument
             android:name="movieItem"
-            app:argType="com.app.assessment.test.movie.list.models.MovieItem" />
+            app:argType="com.app.assessment.test.models.movie.MovieItem" />
     </fragment>
 </navigation>

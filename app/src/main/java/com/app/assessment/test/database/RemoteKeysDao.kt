@@ -1,10 +1,10 @@
-package com.app.assessment.test.movie.list.database
+package com.app.assessment.test.database
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.app.assessment.test.movie.list.models.RemoteKeys
+import com.app.assessment.test.models.RemoteKeys
 
 @Dao
 interface RemoteKeysDao {

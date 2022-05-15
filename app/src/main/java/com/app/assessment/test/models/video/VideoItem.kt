@@ -1,4 +1,4 @@
-package com.app.assessment.test.movie.list.models.video
+package com.app.assessment.test.models.video
 
 import com.google.gson.annotations.SerializedName
 

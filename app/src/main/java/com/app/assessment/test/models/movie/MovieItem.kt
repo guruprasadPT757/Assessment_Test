@@ -1,4 +1,4 @@
-package com.app.assessment.test.movie.list.models
+package com.app.assessment.test.models.movie
 
 
 import android.os.Parcelable
@@ -7,11 +7,15 @@ import androidx.databinding.BindingAdapter
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.app.assessment.test.BuildConfig
+import com.app.assessment.test.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
+/**
+ * This class is used to access data from server and store data in local database using room
+ */
 @Parcelize
 @Entity
 data class MovieItem(
@@ -56,15 +60,41 @@ data class MovieItem(
 	@field:SerializedName("vote_count")
 	val voteCount: Int? = null,
 
-	val timeStamp: Long? = null
+	var timeStamp: Long? = null
 ) : Parcelable {
 	companion object {
+
+		/**
+		 * This method is used for loading image from server to imageview using glide library.
+		 * Image is center cropped for better display
+		 */
 		@JvmStatic
 		@BindingAdapter("app:imageUrl")
 		fun loadImage(view: ImageView, posterPath: String?) {
+			view.transitionName = posterPath
 			Glide.with(view.context)
 				.load(BuildConfig.IMAGE_URL + posterPath)
-				.apply(RequestOptions().fitCenter())
+				.apply(RequestOptions()
+					.placeholder(R.drawable.grass_door_logo)
+					.centerCrop()
+					.useUnlimitedSourceGeneratorsPool(true))
+				.into(view)
+		}
+
+		/**
+		* This method is used for loading image from server to imageview using glide library.
+		* Image is optionally fit to center for better display
+		*/
+		@JvmStatic
+		@BindingAdapter("app:imageFullUrl")
+		fun loadFullImage(view: ImageView, posterPath: String?) {
+			view.transitionName = posterPath
+			Glide.with(view.context)
+				.load(BuildConfig.IMAGE_URL + posterPath)
+				.apply(RequestOptions()
+					.placeholder(R.drawable.grass_door_logo)
+					.fitCenter()
+					.useUnlimitedSourceGeneratorsPool(true))
 				.into(view)
 		}
 	}

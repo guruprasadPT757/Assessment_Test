@@ -4,7 +4,6 @@
     xmlns:tool="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="movieItem"
             type="com.app.assessment.test.models.movie.MovieItem" />
@@ -25,35 +24,48 @@
                 android:id="@+id/guide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.5" />
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.3" />
 
             <TextView
                 android:id="@+id/tvMovieName"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen20dp"
+                android:layout_marginStart="@dimen/dimen20dp"
                 android:text="@{movieItem.title}"
                 android:textSize="@dimen/textSize18sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnSetProfile"
+                app:layout_constraintStart_toEndOf="@+id/ivMoviePoster"
                 app:layout_constraintTop_toTopOf="parent"
                 tool:text="Avengers" />
 
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSetProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/dimen20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvMovieName"
+                app:layout_constraintTop_toTopOf="@+id/tvMovieName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvMovieName"
+                android:text="@string/set_profile"/>
 
             <ImageView
                 android:id="@+id/ivMoviePoster"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/dimen20dp"
                 android:src="@mipmap/ic_launcher"
-                android:layout_marginTop="@dimen/dimen20dp"
+                android:scaleType="fitXY"
                 android:transitionName="@{movieItem.posterPath}"
                 app:imageFullUrl="@{movieItem.posterPath}"
-                app:layout_constraintBottom_toTopOf="@+id/guide"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/btnWatchTrailer"
+                app:layout_constraintEnd_toStartOf="@+id/guide"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvMovieName" />
+                app:layout_constraintTop_toTopOf="@+id/tvMovieName"/>
 
 
             <TextView
@@ -61,20 +73,13 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/dimen20dp"
+                android:layout_marginStart="@dimen/dimen20dp"
                 android:text="@{movieItem.overview}"
                 app:layout_constraintBottom_toTopOf="@+id/tilMovieComment"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/guide"
+                app:layout_constraintStart_toEndOf="@+id/ivMoviePoster"
+                app:layout_constraintTop_toBottomOf="@+id/tvMovieName"
                 tool:text="Avengers" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSetProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                app:layout_constraintBottom_toBottomOf="@+id/tvMovieDescription"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:text="@string/set_profile"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilMovieComment"
@@ -84,8 +89,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen20dp"
                 android:layout_marginBottom="@dimen/dimen20dp"
+                android:layout_marginStart="@dimen/dimen20dp"
                 android:hint="@string/enter_comments"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivMoviePoster"
                 app:layout_constraintEnd_toStartOf="@+id/ibComment"
                 app:layout_constraintBottom_toTopOf="@+id/btnWatchTrailer"
                 app:layout_constraintTop_toBottomOf="@+id/tvMovieDescription"
@@ -120,6 +126,7 @@
                 android:layout_marginBottom="@dimen/dimen20dp"
                 android:backgroundTint="@color/flush_mahogany"
                 android:text="@string/watch_trailer"
+                app:layout_constraintTop_toBottomOf="@+id/ivMoviePoster"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

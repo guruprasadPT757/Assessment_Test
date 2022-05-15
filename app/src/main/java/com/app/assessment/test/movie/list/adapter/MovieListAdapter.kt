@@ -5,10 +5,8 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.app.assessment.test.BuildConfig
 import com.app.assessment.test.databinding.ItemMovieListBinding
-import com.app.assessment.test.movie.list.models.MovieItem
-import com.bumptech.glide.Glide
+import com.app.assessment.test.models.movie.MovieItem
 
 class MovieListAdapter: PagingDataAdapter<MovieItem, MovieListAdapter.MovieViewHolder>(
     MovieComparator
@@ -23,9 +21,6 @@ class MovieListAdapter: PagingDataAdapter<MovieItem, MovieListAdapter.MovieViewH
         fun bindData(item: MovieItem) {
             itemMovieListBinding.movieItem = item
             itemMovieListBinding.onItemClick = onItemClickListener
-//            Glide.with(itemMovieListBinding.ivMoviePoster.context)
-//                .load(BuildConfig.IMAGE_URL + item.posterPath)
-//                .into(itemMovieListBinding.ivMoviePoster)
         }
     }
 

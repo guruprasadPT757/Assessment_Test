@@ -1,4 +1,4 @@
-package com.app.assessment.test.movie.list.models
+package com.app.assessment.test.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

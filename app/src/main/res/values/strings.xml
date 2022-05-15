@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Assessment_Test</string>
     <string name="watch_trailer">Watch Trailer</string>
-    <string name="enter_comments">Enter comments</string>
+    <string name="enter_comments">Type comments here…</string>
+    <string name="please_enter_comments">Please type comments…</string>
+    <string name="please_press_back_again">Please click BACK again to exit</string>
+    <string name="trailer_not_available">Trailer is not available for this movie…</string>
+    <string name="set_profile">Set Profile</string>
 </resources>

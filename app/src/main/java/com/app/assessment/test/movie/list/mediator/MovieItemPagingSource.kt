@@ -1,11 +1,11 @@
-package com.app.assessment.test.movie.list.paginationv3
+package com.app.assessment.test.movie.list.mediator
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.app.assessment.test.BuildConfig
 import com.app.assessment.test.RetrofitBuilder
-import com.app.assessment.test.movie.list.models.MovieItem
-import com.app.assessment.test.movie.list.models.MoviesResponse
+import com.app.assessment.test.models.movie.MovieItem
+import com.app.assessment.test.models.movie.MoviesResponse
 import retrofit2.HttpException
 import java.io.IOException
 

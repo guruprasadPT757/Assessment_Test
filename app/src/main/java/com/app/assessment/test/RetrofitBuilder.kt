@@ -6,7 +6,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
+/**
+ * This class is building MoviesApiService for calling API's using retrofit library.
+ *
+ */
 object RetrofitBuilder {
     val moviesApiService: MoviesApiService
     init {

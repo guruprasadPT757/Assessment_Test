@@ -4,8 +4,10 @@
     <dimen name="dimen20dp">20dp</dimen>
 
     <dimen name="cornerRadius4dp">4dp</dimen>
-    <dimen name="cornerRadius6dp">4dp</dimen>
+    <dimen name="cornerRadius6dp">6dp</dimen>
 
     <dimen name="textSize18sp">18sp</dimen>
     <dimen name="textSize16sp">16sp</dimen>
+
+    <dimen name="elevation4dp">4dp</dimen>
 </resources>

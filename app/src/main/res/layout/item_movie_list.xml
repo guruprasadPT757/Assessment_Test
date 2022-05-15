@@ -6,7 +6,7 @@
 
         <variable
             name="movieItem"
-            type="com.app.assessment.test.movie.list.models.MovieItem" />
+            type="com.app.assessment.test.models.movie.MovieItem" />
         
         <variable
             name="onItemClick"
@@ -16,6 +16,7 @@
     <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardElevation="@dimen/cornerRadius6dp"
         app:cardCornerRadius="@dimen/cornerRadius4dp"
         android:layout_marginStart="@dimen/dimen10dp"
         android:layout_marginEnd="@dimen/dimen10dp"
@@ -24,13 +25,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> onItemClick.onItemClick(movieItem)}"
+            android:onClick="@{(view) -> onItemClick.onItemClick(view, movieItem)}"
             android:padding="@dimen/dimen10dp">
 
             <ImageView
                 android:id="@+id/ivMoviePoster"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:src="@mipmap/ic_launcher"
                 app:imageUrl="@{movieItem.posterPath}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +54,7 @@
                 android:id="@+id/tvMovieReleaseDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{movieItem.releaseDate}"
+                app:formatDate="@{movieItem.releaseDate}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tvMovieName"
                 app:layout_constraintTop_toBottomOf="@+id/tvMovieName"
